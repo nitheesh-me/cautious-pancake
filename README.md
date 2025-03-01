@@ -18,3 +18,9 @@ To add more shadcn components use:
 ```
 bunx --bun shadcn@canary add button
 ```
+bun dev
+
+```
+bun run build
+
+```
