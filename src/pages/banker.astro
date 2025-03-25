@@ -1,0 +1,25 @@
+---
+import '../styles/global.css';
+// Import React Components with Client-Side Hydration
+import BankersAlgorithm from "@/components/bankers-algorithm";
+import { Instructions } from "@/components/instructions";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro + TailwindCSS</title>
+	</head>
+
+	<body>
+		<main class="w-full max-w-full overflow-x-hidden px-2 sm:px-4 py-4">
+			<div class="max-w-7xl mx-auto space-y-4">
+				<Instructions client:load />
+				<BankersAlgorithm client:load />
+			</div>
+		</main>
+	</body>
+</html>
