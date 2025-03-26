@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react"
 import { AlertCircle, Info, RotateCcw, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import type { ProcessStep, BufferItem, LogEntry, ProcessState } from "../types"
+import type { ProcessStep, BufferItem, LogEntry, ProcessState } from "../../types"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -329,11 +329,11 @@ const BoundedBufferSimulator: React.FC = () => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="border-b">
+      {/* <div className="border-b">
         <div className="px-4 py-2">
           <h1 className="text-xl font-semibold">Bounded Buffer Simulator</h1>
         </div>
-      </div>
+      </div> */}
 
       {/* Main content with collapsible instructions */}
       <div className="flex flex-col flex-1">
