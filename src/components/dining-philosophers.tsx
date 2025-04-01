@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { AlertCircle, Info, RefreshCw } from "lucide-react"
+import { AlertCircle, RefreshCw } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -64,7 +64,7 @@ export function DiningPhilosophers() {
         rightChopstick: null,
         eatingCount: 0,
         thinkingTime: Math.floor(Math.random() * 5) + 3, // 3-7 seconds
-        eatingTime: Math.floor(Math.random() * 3) + 2, // 2-4 seconds
+        eatingTime: Math.floor(Math.random() * 3) + 2, // 2-4 seconds,
       })
     }
 
@@ -572,35 +572,31 @@ export function DiningPhilosophers() {
   return (
     <div className="flex flex-col gap-4">
       <div className="border rounded-lg p-4">
-        <div className="flex items-center">
-          <Instructions />
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Info className="h-4 w-4 text-gray-500 cursor-help ml-1" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Expand to see instructions on how to use this simulation</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
+        <Instructions />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <div className="lg:col-span-3 border rounded-lg p-4">
           <div className="flex items-center mb-4">
             <h2 className="text-lg font-semibold">Controls</h2>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="h-4 w-4 text-gray-500 cursor-help ml-1" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Control panel for resetting the simulation</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <span className="inline-flex items-center justify-center w-5 h-5 ml-1 text-gray-500 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-info"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+              </svg>
+            </span>
           </div>
           <div className="flex flex-col gap-2">
             <TooltipProvider>
@@ -620,16 +616,24 @@ export function DiningPhilosophers() {
 
           <div className="mt-4 flex items-center">
             <h3 className="text-md font-semibold">Legend</h3>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="h-4 w-4 text-gray-500 cursor-help ml-1" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Color codes for philosopher states and chopstick availability</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <span className="inline-flex items-center justify-center w-5 h-5 ml-1 text-gray-500 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-info"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+              </svg>
+            </span>
           </div>
           <div className="space-y-1 text-sm">
             <div className="flex items-center">
@@ -686,7 +690,7 @@ export function DiningPhilosophers() {
                   <TooltipTrigger asChild>
                     <TabsTrigger
                       value="manual"
-                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
+                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[  data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
                     >
                       Manual Guide
                     </TabsTrigger>
@@ -851,16 +855,24 @@ export function DiningPhilosophers() {
         <div className="lg:col-span-3 border rounded-lg p-4">
           <div className="flex items-center mb-2">
             <h2 className="text-lg font-semibold">Action Log</h2>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="h-4 w-4 text-gray-500 cursor-help ml-1" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>This log shows all actions taken by philosophers</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <span className="inline-flex items-center justify-center w-5 h-5 ml-1 text-gray-500 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-info"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+              </svg>
+            </span>
           </div>
           <ActionLog logs={logs} />
         </div>
