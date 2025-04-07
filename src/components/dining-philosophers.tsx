@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useRef, useEffect } from "react"
 import { AlertCircle, RefreshCw } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -668,86 +666,37 @@ export function DiningPhilosophers() {
 
         <div className="lg:col-span-6 border border-green-500 rounded-lg p-4">
           <Tabs defaultValue="simulation" value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="w-full bg-[#3498db]">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger
-                      value="simulation"
-                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
-                    >
-                      Simulation
-                    </TabsTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Interactive simulation of the Dining Philosophers problem</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger
-                      value="manual"
-                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[  data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
-                    >
-                      Manual Guide
-                    </TabsTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Step-by-step guide for manual simulation</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger
-                      value="theory"
-                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
-                    >
-                      Theory
-                    </TabsTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Theoretical background of the Dining Philosophers problem</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger
-                      value="deadlock"
-                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
-                    >
-                      Deadlock
-                    </TabsTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Explanation of deadlock conditions and how to observe them</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger
-                      value="starvation"
-                      className="flex-1 text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
-                    >
-                      Starvation
-                    </TabsTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Explanation of starvation issues and how to observe them</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+            <TabsList className="w-full bg-[#3498db] flex flex-wrap">
+              <TabsTrigger
+                value="simulation"
+                className="flex-1 min-w-0 text-xs sm:text-sm text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
+              >
+                Simulation
+              </TabsTrigger>
+              <TabsTrigger
+                value="manual"
+                className="flex-1 min-w-0 text-xs sm:text-sm text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
+              >
+                Guide
+              </TabsTrigger>
+              <TabsTrigger
+                value="theory"
+                className="flex-1 min-w-0 text-xs sm:text-sm text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
+              >
+                Theory
+              </TabsTrigger>
+              <TabsTrigger
+                value="deadlock"
+                className="flex-1 min-w-0 text-xs sm:text-sm text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
+              >
+                Deadlock
+              </TabsTrigger>
+              <TabsTrigger
+                value="starvation"
+                className="flex-1 min-w-0 text-xs sm:text-sm text-white data-[state=active]:bg-[#1a5276] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:border-b-2 data-[state=active]:border-white"
+              >
+                Starvation
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="simulation" className="p-2">
               <div className="flex flex-col space-y-4">

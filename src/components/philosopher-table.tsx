@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import type { Philosopher, Chopstick } from "./dining-philosophers"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
@@ -100,7 +102,7 @@ export function PhilosopherTable({
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  className={`absolute  rounded-full ${getChopstickColor(chopstick.state)} transition-colors duration-300 ${isSimulating ? "cursor-not-allowed" : "cursor-pointer hover:opacity-80"}`}
+                  className={`absolute rounded-full ${getChopstickColor(chopstick.state)} transition-colors duration-300 ${isSimulating ? "cursor-not-allowed" : "cursor-pointer hover:opacity-80"}`}
                   style={{
                     width: chopstickWidth,
                     height: chopstickHeight,
@@ -177,25 +179,6 @@ export function PhilosopherTable({
           </TooltipProvider>
         )
       })}
-
-      {/* Labels */}
-      {/* {philosophers.map((philosopher, index) => {
-        const position = getPosition(index, philosophers.length, tableRadius + philosopherRadius * 2.5)
-
-        return (
-          <div
-            key={`label-${philosopher.id}`}
-            className="absolute text-xs font-semibold text-center"
-            style={{
-              left: position.x,
-              top: position.y,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {philosopher.name}
-          </div>
-        )
-      })} */}
     </div>
   )
 }
