@@ -45,7 +45,7 @@ export default function ActionLog({ logs }: ActionLogProps) {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex items-center mb-2">
+      <div className="flex items-center mb-3">
         <h2 className="font-semibold">Action Log</h2>
         <TooltipProvider>
           <Tooltip>
@@ -60,7 +60,7 @@ export default function ActionLog({ logs }: ActionLogProps) {
       </div>
       <div
         ref={logContainerRef}
-        className="flex-1 overflow-y-auto border rounded-md p-2 bg-gray-50 h-[400px] max-h-[400px]"
+        className="flex-1 overflow-y-auto border rounded-md p-3 bg-gray-50 h-[200px] sm:h-[500px]"
         aria-live="polite"
       >
         {logs.length === 0 ? (
@@ -78,4 +78,3 @@ export default function ActionLog({ logs }: ActionLogProps) {
     </div>
   )
 }
-

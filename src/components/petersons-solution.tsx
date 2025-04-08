@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import Instructions from "@/components/instructions"
 import ProcessControls from "@/components/process-controls"
@@ -234,7 +236,7 @@ export function PetersonsSolution() {
   return (
     <TooltipProvider>
       <div>
-        <div className="mb-4">
+        <div className="mb-6">
           <Instructions
             collapsed={instructionsCollapsed}
             onToggle={() => setInstructionsCollapsed(!instructionsCollapsed)}
@@ -242,8 +244,8 @@ export function PetersonsSolution() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          <div className="lg:col-span-2 bg-white rounded-lg border p-4 shadow-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-2 bg-white rounded-lg border p-6 shadow-sm h-full">
             <ProcessControls
               simulationState={simulationState}
               onStart={startSimulation}
@@ -253,7 +255,7 @@ export function PetersonsSolution() {
             />
           </div>
 
-          <div className="lg:col-span-7 bg-white rounded-lg border-2 border-green-500 p-4 shadow-sm">
+          <div className="lg:col-span-7 bg-white rounded-lg border-2 border-green-500 p-6 shadow-sm h-full">
             <SimulationArea
               process0State={process0State}
               process1State={process1State}
@@ -270,12 +272,16 @@ export function PetersonsSolution() {
             />
           </div>
 
-          <div className="lg:col-span-3 bg-white rounded-lg border p-4 shadow-sm">
+          <div className="lg:col-span-3 bg-white rounded-lg border p-6 shadow-sm h-full sm:block hidden">
             <ActionLog logs={logs} />
           </div>
+        </div>
+
+        {/* Action Log for small screens only */}
+        <div className="mt-6 bg-white rounded-lg border p-6 shadow-sm sm:hidden block">
+          <ActionLog logs={logs} />
         </div>
       </div>
     </TooltipProvider>
   )
 }
-

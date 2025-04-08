@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Play, Pause, RotateCcw } from "lucide-react"
 import { Info } from "lucide-react"
@@ -22,8 +20,8 @@ export default function ProcessControls({
 }: ProcessControlsProps) {
   return (
     <TooltipProvider>
-      <div className="space-y-4">
-        <div className="flex items-center mb-2">
+      <div className="space-y-6">
+        <div className="flex items-center mb-3">
           <h2 className="font-semibold">Controls</h2>
           <Tooltip>
             <TooltipTrigger>
@@ -34,14 +32,14 @@ export default function ProcessControls({
             </TooltipContent>
           </Tooltip>
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-3">
           {simulationState === "running" ? (
             <Button onClick={onPause} className="flex items-center gap-1">
               <Pause className="h-4 w-4" />
               Pause
             </Button>
           ) : (
-            <Button onClick={onStart} className="flex items-center gap-1">
+            <Button onClick={onStart} className="flex items-center gap-1 bg-blue-500 text-white">
               <Play className="h-4 w-4" />
               Start
             </Button>
@@ -53,15 +51,15 @@ export default function ProcessControls({
           </Button>
         </div>
 
-        <div className="mt-4 p-2 bg-gray-100 rounded-md">
+        <div className="p-3 bg-gray-100 rounded-md">
           <p className="text-sm font-medium">Selected Process:</p>
-          <p className="text-lg font-bold text-center mt-1">
+          <p className="text-lg font-bold text-center mt-2">
             {selectedProcess !== null ? `P${selectedProcess}` : "None"}
           </p>
         </div>
 
-        <div className="mt-4">
-          <div className="flex items-center mb-2">
+        <div className="mt-6">
+          <div className="flex items-center mb-3">
             <h3 className="font-medium">Legend</h3>
             <Tooltip>
               <TooltipTrigger>
@@ -72,21 +70,21 @@ export default function ProcessControls({
               </TooltipContent>
             </Tooltip>
           </div>
-          <div className="space-y-2 text-sm">
+          <div className="space-y-3 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-md bg-gray-300"></div>
+              <div className="w-5 h-5 rounded-md bg-gray-300"></div>
               <span>Inactive</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-md bg-green-500"></div>
+              <div className="w-5 h-5 rounded-md bg-green-500"></div>
               <span>Active</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-md bg-yellow-400"></div>
+              <div className="w-5 h-5 rounded-md bg-yellow-400"></div>
               <span>Waiting</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-md bg-red-500"></div>
+              <div className="w-5 h-5 rounded-md bg-red-500"></div>
               <span>In Critical Section</span>
             </div>
           </div>
@@ -95,4 +93,3 @@ export default function ProcessControls({
     </TooltipProvider>
   )
 }
-
