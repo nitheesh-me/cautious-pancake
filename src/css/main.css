@@ -1,0 +1,973 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  padding-bottom: 20px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+#toc {
+  position: absolute;
+  padding: 20px;
+  margin: 30px;
+  bottom: 30px;
+  right: 30px;
+  width: 400px;
+  float: left;
+  display: none;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.show {
+  display: block;
+}
+
+.toc-element {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: larger;
+  font-weight: bold;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.toc-element:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.content-block {
+  background-color: whitesmoke;
+  font-size: medium;
+  display: none;
+  padding: 10px;
+}
+
+#study-material {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 100px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: xx-large;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#study-material:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.Instructions {
+  border-color: dodgerblue;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+}
+
+/* Responsive container */
+.container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Make controls, displays, and dialog-box responsive */
+.controls {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f2f3f4;
+  border-radius: 10px;
+  padding: 10px;
+  height: auto;
+  min-height: 600px;
+}
+
+.displays {
+  flex: 2;
+  min-width: 300px;
+  background-color: #f2f3f4;
+  border-radius: 10px;
+  height: auto;
+  min-height: 600px;
+  padding: 10px;
+}
+
+.dialog-box {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f2f3f4;
+  border-radius: 10px;
+  height: auto;
+  min-height: 600px;
+  max-height: 600px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+code {
+  width: max-content;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  color: #333;
+  /* background-color: #f7f7f7; */
+  padding: 4px 8px;
+  /* border-radius: 4px;
+  border: 1px solid #ccc; */
+}
+
+#_fb {
+  padding: 8px;
+  font-weight: bold;
+  background-color: dodgerblue;
+  color: white;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+#_pmpt {
+  padding: 8px;
+  font-weight: bold;
+  background-color: green;
+  color: white;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.msg {
+  border-collapse: separate;
+  border-spacing: 10px;
+  color: #333;
+  /* border: solid;
+  border-color: darkgray; */
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.start_simulation {
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  border: solid transparent;
+  background-color: green;
+  text-align: center;
+  font-weight: bolder;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.start_simulation:hover {
+  cursor: pointer;
+}
+
+.Code_instructions {
+  height: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 10px;
+  border: solid;
+  border-color: darkgrey;
+}
+
+.Itr_btn {
+  margin: 2px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 5px;
+  border: solid darkgray;
+  width: 95%;
+  height: 60px;
+}
+
+.Itr_btn:hover {
+  cursor: pointer;
+  background-color: darkgray;
+  color: white;
+  font-weight: bolder;
+}
+/*
+ CSS for the subsytem tabs
+*/
+.tabset > input[type="radio"] {
+  position: absolute;
+  left: -200vw;
+}
+
+.tabset .tab-panel {
+  display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+  display: block;
+}
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+}
+
+input:focus-visible + label {
+  outline: 2px solid rgba(0, 102, 204, 1);
+  border-radius: 3px;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label,
+.tabset > input:checked + label {
+  color: #06c;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+  background: #06c;
+}
+
+.tabset > input:checked + label {
+  border-color: darkgrey;
+  border-bottom: 5px solid #fff;
+  background-color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-bottom: -10px;
+}
+
+.tab-panel {
+  padding: 10px;
+  border-bottom: solid darkgrey;
+  border-left: solid darkgrey;
+  border-right: solid darkgrey;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white;
+  border-top: solid darkgrey;
+  height: auto;
+  min-height: 200px;
+  overflow-y: scroll;
+  width: 100%%;
+  max-height: 300px;
+}
+
+.modes {
+  margin: 10px;
+  margin-bottom: 0px;
+}
+
+/* css for table cells */
+
+#dialog {
+  /* border: 2px solid; */
+  border-color: transparent;
+  /* border-radius: 10px; */
+  padding: 10px;
+  /* margin: 10px; */
+  /* background-color: dodgerblue; */
+  /* color: white; */
+  width: 100%;
+}
+
+#dialog td {
+  border: 5px solid;
+  border-color: #f2f3f4;
+  border-radius: 30px;
+  padding: 15px;
+  margin: 10px;
+  background-color: dodgerblue;
+  color: white;
+  width: 100%;
+  border-bottom-right-radius: 0px;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn {
+  margin: 5px;
+  margin-top: -25px;
+  padding: 12px;
+  border-radius: 5px;
+  border: solid;
+  border-color: darkgray;
+  background-color: darkgrey;
+  color: white;
+  font-weight: bolder;
+  display: none;
+  font-size: 16px;
+}
+
+.control-btn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: darkgrey;
+}
+
+/* Make CPU and Memory sections responsive */
+.CPU {
+  background-color: white;
+  border-radius: 10px;
+  border: solid;
+  border-color: darkgray;
+  padding: 5px;
+  margin: 10px;
+  width: 97.5%;
+  height: auto;
+  min-height: 200px;
+}
+
+.Memory {
+  padding: 5px;
+  margin: 5px;
+  width: 99%;
+  height: auto;
+}
+
+.tabset1 > input[type="radio"] {
+  position: absolute;
+  left: -200vw;
+}
+
+.tabset1 .tab-panel1 {
+  display: none;
+}
+
+.tabset1 > input:first-child:checked ~ .tab-panels1 > .tab-panel1:first-child,
+.tabset1 > input:nth-child(3):checked ~ .tab-panels1 > .tab-panel1:nth-child(2),
+.tabset1 > input:nth-child(5):checked ~ .tab-panels1 > .tab-panel1:nth-child(3),
+.tabset1 > input:nth-child(7):checked ~ .tab-panels1 > .tab-panel1:nth-child(4),
+.tabset1 > input:nth-child(9):checked ~ .tab-panels1 > .tab-panel1:nth-child(5),
+.tabset1 > input:nth-child(11):checked ~ .tab-panels1 > .tab-panel1:nth-child(6),
+.tabset1 > input:nth-child(13):checked ~ .tab-panels1 > .tab-panel1:nth-child(7) {
+  display: block;
+}
+
+.tabset1 > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabset1 > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+}
+
+input:focus-visible + label {
+  outline: 2px solid rgba(0, 102, 204, 1);
+  border-radius: 3px;
+}
+
+.tabset1 > label:hover,
+.tabset1 > input:focus + label,
+.tabset1 > input:checked + label {
+  color: #06c;
+}
+
+.tabset1 > label:hover::after,
+.tabset1 > input:focus + label::after,
+.tabset1 > input:checked + label::after {
+  background: #06c;
+}
+
+.tabset1 > input:checked + label {
+  border-color: darkgrey;
+  border-bottom: 5px solid #fff;
+  background-color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-bottom: -10px;
+}
+
+.tab-panel1 {
+  padding: 10px;
+  border-bottom: solid darkgrey;
+  border-left: solid darkgrey;
+  border-right: solid darkgrey;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white;
+  border-top: solid darkgrey;
+  height: auto;
+  min-height: 200px;
+  overflow-y: scroll;
+  width: 100%;
+  max-height: 220px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.91); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-t {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal_timer {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-r {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal_read {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+.modal_exit1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+.modal_exit2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 200px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-content-ex1 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-content-ex2 {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* The Close Button */
+.boot {
+  color: #aaaaaa;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boot:hover,
+.boot:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The Close Button */
+.boot-t {
+  color: #aaaaaa;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boot-t:hover,
+.boot-t:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The Close Button */
+.boot-r {
+  color: #aaaaaa;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boot-r:hover,
+.boot-r:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The Close Button */
+.boot-ex1 {
+  color: #aaaaaa;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boot-ex1:hover,
+.boot-ex1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boot-ex2 {
+  color: #aaaaaa;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boot-ex2:hover,
+.boot-ex2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#userProgram td {
+  padding: 10px;
+  /* white-space: nowrap; */
+  word-break: break-word;
+}
+
+#userProgram th {
+  padding: 10px;
+  white-space: nowrap;
+  color: white;
+  background-color: dodgerblue;
+  border: solid dodgerblue;
+  margin-left: -10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: sticky;
+  top: 0;
+}
+
+.inst_button {
+  background-color: moccasin;
+  color: black;
+  text-align: center;
+  border: solid darkgrey;
+  border-radius: 5px;
+  padding: 12px;
+  width: 94%;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#CPU {
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 10px;
+  margin: 10px;
+}
+
+.accordion > input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+
+.accordion .content {
+  overflow-y: hidden;
+  height: 0;
+  transition: height 0.3s ease;
+}
+
+.accordion > input[type="checkbox"]:checked ~ .content {
+  height: auto;
+  overflow: visible;
+}
+
+.accordion label {
+  display: block;
+}
+
+/*
+ Styling
+*/
+/* body {
+  font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+  color: #333;
+  font-weight: 300;
+} */
+
+.accordion {
+  margin-bottom: 1em;
+}
+
+.accordion > input[type="checkbox"]:checked ~ .content {
+  padding: 15px;
+  border: 1px solid #e8e8e8;
+  border-top: 0;
+}
+
+.accordion .handle {
+  margin: 0;
+  font-size: 1.125em;
+  line-height: 1.2em;
+}
+
+.accordion label {
+  color: #333;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 15px;
+  background: #e8e8e8;
+}
+
+.accordion label:hover,
+.accordion label:focus {
+  background: #d8d8d8;
+}
+
+.accordion .handle label:before {
+  font-family: "fontawesome";
+  content: "\f054";
+  display: inline-block;
+  margin-right: 10px;
+  font-size: .58em;
+  line-height: 1.556em;
+  vertical-align: middle;
+}
+
+.accordion > input[type="checkbox"]:checked ~ .handle label:before {
+  content: "\f078";
+}
+
+.container3 {
+  margin-top: 50%;
+}
+
+.accordion {
+  max-width: 15em;
+  float: left;
+}
+
+.accordion p:last-child {
+  margin-bottom: 0;
+}
+
+#info_btn {
+  border-radius: 100%;
+  width: fit-content;
+  color: white;
+  font-weight: lighter;
+  background-color: dodgerblue;
+  border: none;
+  cursor: help;
+}
+
+.wrapper {
+  cursor: help;
+  -webkit-transform: translateZ(0); /* webkit flicker fix */
+  /* -webkit-font-smoothing: antialiased; webkit text rendering fix */
+}
+
+.wrapper .tooltip {
+  background: #566573;
+  bottom: 100%;
+  color: #fff;
+  display: block;
+  left: -100%;
+  margin-bottom: 20px;
+  opacity: 0;
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  width: 20em;
+  font-size: medium;
+  font-weight: normal;
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.wrapper .tooltip:before {
+  bottom: -20px;
+  content: " ";
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.wrapper .tooltip:after {
+  border-left: solid transparent 10px;
+  border-right: solid transparent 10px;
+  border-top: solid #566573 10px;
+  bottom: -10px;
+  content: " ";
+  height: 0;
+  left: 10%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}
+
+.wrapper:hover .tooltip {
+  opacity: 0.9;
+  pointer-events: auto;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/* Portrait orientation warning */
+.rotate {
+  display: none;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+  background-color: #ffeeee;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .rotate {
+    display: none;
+  }
+
+  @media (orientation: landscape) {
+    .rotate {
+      display: none;
+    }
+  }
+}
+
+/* Make tables responsive */
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#userProgram {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Responsive buttons */
+.Itr_btn {
+  height: auto;
+  min-height: 60px;
+}
+
+/* Media queries for different screen sizes */
+@media (min-width: 1024px) {
+  .controls,
+  .dialog-box {
+    height: 900px;
+    min-height: 900px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .controls,
+  .displays,
+  .dialog-box {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .CPU,
+  .Memory {
+    width: 100%;
+    max-width: none;
+  }
+
+  .tabset > label,
+  .tabset1 > label {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .modal-content,
+  .modal-content-t,
+  .modal-content-r,
+  .modal-content-ex1,
+  .modal-content-ex2 {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .tabset > label,
+  .tabset1 > label {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  #toc {
+    width: 90%;
+    right: 5%;
+    bottom: 10px;
+  }
+
+  #study-material {
+    right: 10px;
+    bottom: 10px;
+    font-size: x-large;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .Code_instructions {
+    height: 200px;
+  }
+
+  .tab-panel,
+  .tab-panel1 {
+    max-height: 200px;
+  }
+
+  .inst_button {
+    font-size: 14px;
+  }
+
+  #dialog td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .rotate {
+    display: block;
+  }
+}
