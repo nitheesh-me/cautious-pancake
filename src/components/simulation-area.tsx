@@ -94,7 +94,7 @@ export default function SimulationArea({
           size="sm"
           onClick={() => onEnterCriticalSection(0)}
           disabled={selectedProcess !== 0}
-          className="text-xs px-2 py-1 h-auto sm:h-9 sm:px-4 sm:py-2 bg-blue-500"
+          className="text-xs px-2 py-1 h-auto sm:h-9 sm:px-4 sm:py-2"
         >
           Enter Critical Section
         </Button>
@@ -141,7 +141,7 @@ export default function SimulationArea({
           size="sm"
           onClick={() => onEnterCriticalSection(1)}
           disabled={selectedProcess !== 1}
-          className="text-xs px-2 py-1 h-auto sm:h-9 sm:px-4 sm:py-2 bg-blue-500"
+          className="text-xs px-2 py-1 h-auto sm:h-9 sm:px-4 sm:py-2"
         >
           Enter Critical Section
         </Button>

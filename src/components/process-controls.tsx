@@ -39,7 +39,7 @@ export default function ProcessControls({
               Pause
             </Button>
           ) : (
-            <Button onClick={onStart} className="flex items-center gap-1 bg-blue-500 text-white">
+            <Button onClick={onStart} className="flex items-center gap-1 text-white">
               <Play className="h-4 w-4" />
               Start
             </Button>
