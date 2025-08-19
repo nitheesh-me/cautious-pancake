@@ -1,10 +1,7 @@
 ---
 import '../styles/global.css';
 // Component Imports
-//import Button from '../components/Button.astro';
-// React imports
-import {Button} from '@/components/ui/button';
-import BoundedBufferSimulator from "bounded-buffer-simulator"
+import Button from '../components/Button.astro';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -21,7 +18,7 @@ import BoundedBufferSimulator from "bounded-buffer-simulator"
 
 	<body>
 		<div class="grid place-items-center h-screen content-center">
-			<BoundedBufferSimulator client:load />
+			<Button>Tailwind Button in Astro!</Button>
 			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
 		</div>
 	</body>
