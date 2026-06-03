@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="./js/main.js"></script>
+</head>
+
+<body>
+    <i style="font-size: 20px; color: red; text-shadow: 0 8px 16px yellow;"><b>Note: </b>Create a new process to start
+        the simulation. Please refer to the dialog box during the experiment.</i>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" style="border-radius: 15px;">
+            <!-- <span class="close">&times;</span> -->
+            <p>
+            <h1 style="color: red;">Error!</h1>
+            <p>
+            <p id="alert-msg">
+            </p>
+            <span class="boot"
+                style="width: fit-content; padding: 10px; background-color: red; color: white; border-radius:10px;">OK</span>
+            </p>
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <div class="ts_states">
+            <p style="text-align: center; font-weight: bold">Transition states of the system</p>
+            <hr>
+
+            <div class="states">
+                <div class="tabset">
+                    <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+                    <label id="current_state" for="tab1">Current System<br>State&nbsp<button class="wrapper"
+                            id="info_btn"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <span class="tooltip">The informtion about the plant (CPU and process table) is displayed
+                                here.</span></button></label>
+                    <input type="radio" name="tabset" id="tab2" aria-controls="marzen">
+                    <label id="previous_states" for="tab2">Previous system<br>States&nbsp<button class="wrapper"
+                            id="info_btn"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <span class="tooltip">All the previous states of the plant(CPU and process table) are stored
+                                here to refer later.</span></button></label>
+
+                    <div class="tab-panels">
+                        <section id="marzen" class="tab-panel">
+                            <table id="current_ts">
+                                <tr>
+                                    <td class="ts_cell">Ready:</td>
+                                    <td class="ts_cell" id="rQ"></td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">Waiting for I/O:</td>
+                                    <td class="ts_cell" id="wQ"></td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">Terminated:</td>
+                                    <td class="ts_cell" id="tQ"></td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">Completed:</td>
+                                    <td class="ts_cell" id="cQ"></td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">cpu:</td>
+                                    <td class="ts_cell" id="cpu_p">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">Map:</td>
+                                    <td class="ts_cell" id="map">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">Timer:</td>
+                                    <td class="ts_cell" id="timer">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="ts_cell">Scheduling policy:</td>
+                                    <td class="ts_cell" id="schd_p">None</td>
+                                </tr>
+                            </table>
+                        </section>
+                        <section id="rauchbier" class="tab-panel">
+
+                            <div id="prev_state">
+
+                            </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="displays">
+
+            <div>
+
+              <div class="displayCpuProcess">
+
+                <div class="display-block" style="width:29%;">
+                    <p style="text-align: center; font-weight: bold;">CPU
+                        <!-- <button class="wrapper" id="info_btn"> ?
+                            <span class="tooltip">CPU is the hardware component that carries out the essential
+                                computational
+                                tasks required by the OS and software applications. The OS manages and coordinates the
+                                CPU's
+                                activities, ensuring that processes run efficiently, securely, and in accordance with
+                                system
+                                priorities.</span>
+                            </button> -->
+                    </p>
+                    <hr>
+                    <table id="CPU">
+
+                    </table>
+                </div>
+                <div class="display-block" style="width: 60%;">
+                    <p style="text-align: center; font-weight: bold;">Processes
+                        <!-- <button class="wrapper" id="info_btn"> ?
+                                <span class="tooltip">This block contains information about all the process in the
+                                    simulation.</span>
+                                </button> -->
+                    </p>
+                    <hr>
+
+                    <table id="processes">
+
+                    </table>
+                </div>
+
+              </div>
+                
+
+                <div class="tick_sch_Display" id="display-div">
+                    <div>Number of Ticks: <span id="ticker"></span></div>
+                </div>
+
+                <p style="text-align:center; font-weight: bold;">Controls</p>
+
+                <div class="controls">
+
+
+                    <b>Scheduling Policy:</b>
+                    <select name="things" class="btn" id="policy-btn" onchange="UpdatePolicy()">
+                        <option value="None" selected="selected">Please Select the Scheduling Policy...</option>
+                        <option value="FCFS">First Come First Serve</option>
+                        <option value="SJF">Shortest Job First</option>
+                        <option value="SRTF">Shorted Remaining Time First</option>
+                        <option value="RR"><button>Round-Robin</button></option>
+                    </select>
+
+                    <button class="btn disabled" id="tick-btn" onclick="Tick()" style="width: 30%;">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+
+                        Tick
+
+                        <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                            <span class="tooltip">Each tick counts as one clock cycle. Any instruction completes it's
+                                execution only when the clock ticks.
+                            </span>
+                        </i>
+
+                    </button>
+
+                    <div class="arrow_1 bounce_1" id="arw_1"></div>
+                    <div id="guide-tip_1">Select a scheduling policy for the experiment</div>
+
+                    <p style="text-align: center; font-weight: bold; position: relative;">Generate External Events</p>
+                    <div style="margin-left: 15%;">
+
+                        <button class="btn disabled" id="schd-btn" onclick="loadUnloadCommand('schedule')">Schedule
+                            <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                <span class="tooltip">Scheduling selects the next process to be run on the CPU according
+                                    to the scheduling policy.
+                                </span>
+                            </i>
+                        </button>
+                        <button class="btn disabled" id="end-btn" onclick="loadUnloadCommand('terminate')">Terminate
+                            <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                <span class="tooltip">The currently running process terminates irrespective of the
+                                    status of the process.
+                                </span>
+                            </i>
+                        </button>
+                        <button class="btn disabled" id="io-btn" onclick="loadUnloadCommand('io_int')">I/O Interrupt
+                            <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                <span class="tooltip">The currently running process is interrupted and moved to the
+                                    waiting
+                                    queue.
+                                </span>
+                            </i>
+                        </button>
+                        <button class="btn disabled" id="io-cmpl-btn" onclick="loadUnloadCommand('io_cmpl')">I/O
+                            Complete
+                            <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                <span class="tooltip">Selects a process from the waiting queue and moves it to the
+                                    ready
+                                    queue.
+                                </span>
+                            </i>
+                        </button>
+                        <button class="btn disabled" id="int-btn" onclick="loadUnloadCommand('int')">Interrupt
+                            <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle" aria-hidden="true"></i>
+
+                                <span class="tooltip">Interrupts the CPU.
+                                </span>
+                            </i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn disabled" id="newProcess-btn" onclick="ToggleCreateProcess()"> <i
+                                    class="fa fa-plus"></i> New process
+                                <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle"
+                                        aria-hidden="true"></i>
+
+                                    <span class="tooltip">The currently running process terminates irrespective of the
+                                        status of the process.
+                                    </span>
+                                </i>
+                                <div class="arrow bounce" id="arw"></div>
+                            </button>
+                            <div id="guide-tip">Click on "New Process" button to start the simulation</div>
+                            <div id="myDropdown" class="dropdown-content">
+                                <!-- <input type="number" placeholder="Enter Burst Time (1 - 30)" id="burstTime"> -->
+                                <textarea name="burstTime" id="burstTime" cols="30" rows="10"></textarea>
+                                <button class="btn" style="width: 100%; border-radius: 0%; margin: 0;"
+                                    onclick="loadUnloadCommand('newProcess')">Create</button>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn" style="display: none;" id="quantum-btn" onclick="ToggleQuantum()"> <i
+                                    class="fa fa-clock-o"></i> Quantum
+                                <i class="wrapper" id="info_btn_new"> <i class="fa fa-info-circle"
+                                        aria-hidden="true"></i>
+
+                                    <span class="tooltip">The time quantum for the Round Robin scheduling policy.
+                                    </span>
+                                </i>
+                                <div class="quantum-arrow bounce" id="quantum-arw"></div>
+                            </button>
+                            <div id="guide-tip-quantum">Click on "Quantum" button to set the time quantum for the simulation.</div>
+                            <div id="myDropdown_1" class="dropdown-content">
+                                <textarea name="quantum" id="quantum" cols="30" rows="5"></textarea>
+                                <button class="btn" style="width: 100%; border-radius: 0%; margin: 0;"
+                                    onclick="setQuantum()">Set</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; font-weight: bold;">Undo & Redo</p>
+                    <div style="margin-left: 42%;">
+
+                        <button class="btn disabled" id="undo-btn" onclick="Undo()"><i class="fa fa-undo"
+                                aria-hidden="true"></i>
+                            Undo</button>
+                        <button class="btn disabled" id="redo-btn" onclick="Redo()"><i class="fa fa-repeat"
+                                aria-hidden="true"></i>
+                            Redo</button>
+                        <button class="btn " id="reset-btn" onclick="location.reload()">Reset</button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="display-block" style="width: 60%;">
+                <p style="text-align:center; font-weight: bold;">Scheduler</p>
+                <hr>
+            </div> -->
+
+
+        </div>
+        <div id="msg-sec" class="dialog-box">
+            <div style="border-bottom: solid 1px black; margin-bottom: 10px;">
+                <p style="font-weight: bold; float: left; margin: 20px;">Dialog box
+                </p>
+
+                <div class="s_dropdown">
+                    <button onclick="dialog_settings()" class="s_dropbtn">&#9881
+                    </button>
+                    <div id="d_setting" class="s_dropdown-content">
+                        <a id="show_history" onclick="show_history()"><i class="fa fa-eye" aria-hidden="true"></i>
+                            Show dialog history</a>
+                        <a id="hide_history" onclick="hide_history()"><i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            Hide dialog history</a>
+                    </div>
+
+                </div>
+
+                <div style="clear: both;"></div> <!-- Clear float -->
+
+            </div>
+
+            <div id="current_dialog">
+                <b>Please select a scheduling policy before starting the experiment.</b>
+            </div>
+
+            <table id="dialog">
+                <tr>
+                    <!-- <td class="msg">Please select a scheduling policy before starting the experiment.
+                    </td> -->
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="concept-block">
+        <div id="toc">
+            <button class="toc-element" onclick="openContent(1)"> Objective
+            </button>
+            <span class="content-block" id="1">
+                This experiment aims to show the importance of the scheduling mechanism in process management.
+            </span>
+
+            <br><br>
+
+            <button class="toc-element" onclick="openContent(2)"> What is scheduling?
+            </button>
+            <span class="content-block" id="2">
+                Similar to that of <a
+                    href="https://virtual-labs.github.io/exp-context-switching-iiith/theory.html">context switching</a>,
+                the mechanism of scheduling is also a part of 'Process Management Subsystem'. <br><br>However, while
+                context switching is responsible to store, restore and load the new context on the Central Processing
+                Unit (CPU), scheduling is responsible for selecting or handing the over the next process ready to be
+                executed on the CPU. <a
+                    href="https://virtual-labs.github.io/exp-non-preemptive-scheduling-iiith/theory.html">See
+                    more...</a>
+            </span>
+
+            <br><br>
+
+            <button class="toc-element" onclick="openContent(3)"> The mechanism of Scheduling
+            </button>
+            <span class="content-block" id="3">
+                The mechanism of scheduling is a kernel process which selects a process from the ready queue and hands
+                it over to the CPU. <br><br>
+                Based on the scheduling process used by the OS like <a
+                    href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FCFS</a>, <a
+                    href="https://en.wikipedia.org/wiki/Shortest_remaining_time">SJF</a>, <a
+                    href="https://en.wikipedia.org/wiki/Round-robin_scheduling">Round Robin</a> etc, a process is
+                selected from the ready queue after the completion of the currently executing process or by preempting
+                the current process.<br><br>
+                This selected process is then ut on the CPU with the help of <a
+                    href="https://virtual-labs.github.io/exp-context-switching-iiith/theory.html">context switching</a>
+                mechanism and then starts its on the CPU. <br><br>
+                <a href="https://en.wikipedia.org/wiki/Scheduling_(computing)">See more...</a>
+            </span>
+
+            <br><br>
+
+            <button class="toc-element" onclick="openContent(4)"> References
+            </button>
+            <span class="content-block" id="4">
+                TODO...
+            </span>
+        </div>
+        <i class="fa fa-book" aria-hidden="true" id="study-material" onclick="openTheory()"></i>
+    </div>
+
+</body>
+
+</html>
