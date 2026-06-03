@@ -1,0 +1,250 @@
+/* You CSS goes in here */
+body {
+  padding: 30px;
+  padding-bottom: 20px;
+}
+
+th {
+  margin: 10px;
+  color: #566573;
+  padding: 10px;
+}
+
+td {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.tag-orange {
+  padding: 10px;
+  border-radius: 20px;
+  width: max-content;
+  background-color: orange;
+  color: white;
+  font-weight: bolder;
+}
+
+.tag-grey {
+  padding: 10px;
+  border-radius: 20px;
+  width: max-content;
+  background-color: darkgray;
+  color: white;
+  font-weight: bolder;
+}
+
+.tag-red {
+  padding: 10px;
+  border-radius: 20px;
+  width: max-content;
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+}
+
+.tag-blue {
+  padding: 10px;
+  border-radius: 20px;
+  width: max-content;
+  background-color: dodgerblue;
+  color: white;
+  font-weight: bolder;
+}
+
+.tag-green {
+  padding: 10px;
+  border-radius: 20px;
+  width: max-content;
+  background-color: green;
+  color: white;
+  font-weight: bolder;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 1px;
+  color: white;
+  margin: 5px;
+  background-color: green;
+  border: solid 2px green;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.btn:hover {
+  background-color: rgb(0, 165, 0);
+  color: white;
+}
+
+.msg {
+  border-collapse: separate;
+  border-spacing: 10px;
+  border: solid;
+  border-color: darkgray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#dialog {
+  /* border: 2px solid; */
+  border-color: transparent;
+  /* border-radius: 10px; */
+  padding: 10px;
+  /* margin: 10px; */
+  /* background-color: dodgerblue; */
+  /* color: white; */
+  width: 100%;
+}
+
+#dialog td {
+  border: 5px solid;
+  border-color: #f2f3f4;
+  border-radius: 30px;
+  padding: 15px;
+  margin: 10px;
+  background-color: dodgerblue;
+  color: white;
+  width: 100%;
+  border-bottom-right-radius: 0px;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+#toc {
+  position: absolute;
+  padding: 20px;
+  margin: 30px;
+  bottom: 30px;
+  right: 30px;
+  width: 400px;
+  float: left;
+  display: none;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#study-material {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 100px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: xx-large;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#study-material:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.toc-element {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: larger;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.toc-element:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.content-block {
+  background-color: whitesmoke;
+  font-size: medium;
+  display: none;
+  padding: 10px;
+}
+
+.wrapper {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  border: none;
+  font-size: larger;
+  cursor: pointer;
+  /* transform: scale(1.1); */
+  /* -webkit-font-smoothing: antialiased;  */
+  z-index: 10;
+}
+
+.wrapper:hover {
+  transform: scale(1.1);
+}
+
+.wrapper .tooltip {
+  background: #566573;
+  bottom: 100%;
+  right: 100;
+  color: #fff;
+  display: block;
+  z-index: 10;
+  left: -100%;
+  margin-bottom: 20px;
+  opacity: 0;
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  width: 20em;
+  font-size: medium;
+  font-weight: normal;
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.wrapper .tooltip:before {
+  bottom: -20px;
+  content: " ";
+  z-index: 10;
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.wrapper .tooltip:after {
+  border-left: solid transparent 10px;
+  border-right: solid transparent 10px;
+  border-top: solid #566573 10px;
+  bottom: -10px;
+  z-index: 10;
+  content: " ";
+  height: 0;
+  left: 10%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}
+
+.wrapper:hover .tooltip {
+  opacity: 0.9;
+  z-index: 10;
+  pointer-events: auto;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}

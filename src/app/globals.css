@@ -1,0 +1,1187 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    /* OS Lab custom tokens */
+    --os-primary-blue: 217 91% 60%;
+    --os-primary-green: 142 71% 45%;
+    --os-warning-yellow: 48 96% 53%;
+    --os-error-red: 0 72% 51%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  /* 
+    CRITICAL FIX: Set border-color and outline-color explicitly so `border` class
+    always renders as the light gray --border token, never as black currentColor.
+  */
+  * {
+    @apply border-border;
+    outline-color: hsl(var(--ring) / 0.5);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* OS Lab utility classes */
+.process-card {
+  transition: all 0.2s ease-in-out;
+}
+.process-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.simulation-border {
+  border: 2px solid hsl(var(--os-primary-green));
+  border-radius: var(--radius);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Instructions Panel */
+.instructions-panel {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instructions-panel h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.instructions-content {
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .instructions-content {
+    font-size: 16px;
+  }
+}
+
+.instructions-content ol {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.instructions-content p {
+  margin-bottom: 10px;
+}
+
+/* Simulation Container */
+.simulation-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .simulation-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Panel - System State */
+.left-panel {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 450px; /* Base height */
+}
+
+.left-panel h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.state-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.tab-button {
+  padding: 8px 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+.tab-button.active {
+  color: hsl(var(--primary-foreground));
+  border-bottom: 2px solid hsl(var(--primary));
+}
+
+.state-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.state-table td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.state-table td:first-child {
+  font-weight: 500;
+  color: #555;
+}
+
+.state-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.previous-states {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.state-item {
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.state-header {
+  padding: 8px 12px;
+  background-color: #f9f9f9;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+}
+
+.state-details {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .state-details {
+    font-size: 16px;
+  }
+}
+
+.no-states {
+  color: #999;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Middle Panel - CPU and Processes */
+.middle-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cpu-display,
+.processes-display,
+.tick-display,
+.controls {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add green border to CPU and Processes boxes */
+.cpu-display,
+.processes-display {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #27ae60; /* Add green border to match template */
+}
+
+/* Set heights for CPU and Processes displays */
+.cpu-display {
+  height: 150px;
+  overflow-y: auto;
+}
+
+.processes-display {
+  height: 300px;
+  overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+  .cpu-display {
+    height: 180px;
+  }
+
+  .processes-display {
+    height: 350px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cpu-display {
+    height: 200px;
+  }
+
+  .processes-display {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .cpu-display {
+    height: 220px;
+  }
+
+  .processes-display {
+    height: 450px;
+  }
+}
+
+.cpu-display h2,
+.processes-display h2,
+.controls h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.process-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .process-table {
+    font-size: 16px;
+  }
+}
+
+.process-table th {
+  background-color: #f5f5f5;
+  padding: 8px;
+  text-align: left;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.process-table td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.no-process {
+  text-align: center;
+  color: #999;
+  padding: 20px 0;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+@media (min-width: 1440px) {
+  .status {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
+
+.status.running {
+  background-color: #27ae60;
+}
+
+.status.ready {
+  background-color: #f39c12;
+}
+
+.status.waiting {
+  background-color: #3498db;
+}
+
+.status.completed {
+  background-color: #7f8c8d;
+}
+
+.status.terminated {
+  background-color: hsl(var(--destructive));
+}
+
+.tick-display {
+  padding: 10px 15px;
+  height: 50px;
+}
+
+@media (min-width: 1440px) {
+  .tick-display {
+    height: 60px;
+  }
+}
+
+.tick-counter {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@media (min-width: 1440px) {
+  .tick-counter {
+    font-size: 18px;
+  }
+}
+
+/* Controls */
+.controls {
+  min-height: 250px;
+}
+
+@media (min-width: 1024px) {
+  .controls {
+    min-height: 280px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .controls {
+    min-height: 300px;
+  }
+}
+
+.controls h3 {
+  margin: 15px 0 10px;
+  font-size: 16px;
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+}
+
+@media (min-width: 1440px) {
+  .controls h3 {
+    font-size: 18px;
+  }
+}
+
+.policy-controls {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 10px;
+  justify-content: space-between; /* Space items evenly */
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.policy-select {
+  padding: 8px 12px;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  background-color: white;
+  flex-grow: 1;
+  max-width: 70%; /* Limit width to make room for the Tick button */
+}
+
+@media (min-width: 1440px) {
+  .policy-select {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+}
+
+/* Make the Tick button not grow but maintain its size */
+.policy-controls .control-button {
+  flex-shrink: 0;
+  width: auto;
+  white-space: nowrap;
+}
+
+.event-controls,
+.history-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.control-button {
+  padding: 8px 12px;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .control-button {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+}
+
+.control-button:hover {
+  background-color: hsl(var(--primary-foreground));
+}
+
+.control-button.disabled {
+  background-color: hsl(var(--secondary));
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.control-button.reset {
+  background-color: hsl(var(--destructive));
+}
+
+.control-button.reset:hover {
+  background-color: hsl(var(--destructive-foreground));
+}
+
+.process-control,
+.quantum-control {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1440px) {
+  .dropdown-content {
+    width: 250px;
+    padding: 15px;
+  }
+}
+
+.dropdown-content textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  resize: none;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .dropdown-content textarea {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 8px;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .dropdown-button {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Right Panel - Dialog Box */
+.right-panel {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 450px; /* Base height */
+}
+
+/* Add media query to adjust heights on larger screens */
+@media (min-width: 1024px) {
+  .left-panel,
+  .right-panel {
+    height: 550px; /* Taller on larger screens */
+  }
+}
+
+@media (min-width: 1440px) {
+  .left-panel,
+  .right-panel {
+    height: 600px; /* Even taller on very large screens */
+  }
+}
+
+@media (min-width: 1920px) {
+  .left-panel,
+  .right-panel {
+    height: 700px; /* Maximum height for very large screens */
+  }
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.dialog-header h2 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  color: hsl(var(--primary));
+  cursor: pointer;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .settings-button {
+    font-size: 16px;
+  }
+}
+
+.dialog-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: calc(100% - 50px); /* Subtract the header height */
+}
+
+@media (min-width: 1440px) {
+  .dialog-content {
+    height: calc(100% - 60px); /* Adjust for larger header on bigger screens */
+  }
+}
+
+.dialog-history,
+.current-dialog {
+  padding: 10px;
+}
+
+@media (min-width: 1440px) {
+  .dialog-history,
+  .current-dialog {
+    padding: 15px;
+  }
+}
+
+.dialog-item {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.feedback-label,
+.prompt-label {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 1440px) {
+  .feedback-label,
+  .prompt-label {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+
+.feedback-label {
+  background-color: hsl(var(--primary));
+}
+
+.prompt-label {
+  background-color: #2c3e50;
+}
+
+.feedback,
+.prompt {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .feedback,
+  .prompt {
+    font-size: 16px;
+  }
+}
+
+/* Alert Dialog */
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.alert-dialog {
+  background-color: white;
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+@media (min-width: 1440px) {
+  .alert-dialog {
+    max-width: 600px;
+  }
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffebee;
+  border-left: 4px solid hsl(var(--destructive));
+}
+
+@media (min-width: 1440px) {
+  .alert-content {
+    padding: 20px 25px;
+  }
+}
+
+.alert-icon {
+  margin-right: 15px;
+  color: hsl(var(--destructive));
+}
+
+.alert-message {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .alert-message {
+    font-size: 16px;
+  }
+}
+
+.alert-button {
+  padding: 8px 16px;
+  background-color: hsl(var(--input));
+  color: hsl(var(--foreground));
+  border: none;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media (min-width: 1440px) {
+  .alert-button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+
+.alert-button:hover {
+  background-color: hsl(var(--ring));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .simulation-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Fix for policy controls to keep dropdown and tick button on same row */
+  .policy-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .policy-select {
+    width: 70%; /* Reduce width to make room for tick button */
+    flex-grow: 1;
+    margin-bottom: 10px;
+  }
+
+  /* Event controls and buttons layout */
+  .event-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 buttons per row */
+    gap: 8px;
+  }
+
+  /* Keep undo, redo, and reset in the same row */
+  .history-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* Fix for New Process button and other control buttons */
+  .control-button {
+    width: 100%; /* Full width within its grid cell */
+    margin-bottom: 8px;
+    font-size: 12px;
+    padding: 8px 5px;
+    white-space: nowrap; /* Prevent text wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    overflow: hidden; /* Hide overflow text */
+  }
+
+  /* Special handling for process control to ensure dropdown works properly */
+  .process-control {
+    grid-column: span 2; /* Make it take full row width */
+    width: 100%;
+  }
+
+  .process-control .control-button {
+    width: 100%;
+    display: block;
+  }
+
+  .dropdown-content {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* For even smaller screens */
+@media (max-width: 480px) {
+  .policy-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .policy-select {
+    width: 100%;
+  }
+
+  .event-controls,
+  .history-controls {
+    grid-template-columns: 1fr; /* 1 button per row on very small screens */
+  }
+}
+
+/* Add styles for info buttons and tooltips */
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  position: relative;
+  cursor: help;
+}
+
+.info-icon-svg {
+  color: hsl(var(--primary));
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 100;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  width: 200px;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+@media (min-width: 1440px) {
+  .tooltip {
+    width: 250px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.info-icon:hover .tooltip,
+button:hover .tooltip,
+.tab-button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Instructions panel styles */
+.instructions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.collapse-icon {
+  font-size: 12px;
+  transition: transform 0.3s;
+}
+
+.collapse-icon.open {
+  transform: rotate(0deg);
+}
+
+.collapse-icon:not(.open) {
+  transform: rotate(-90deg);
+}
+
+/* Custom scrollbar styles */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+select,
+input {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation for process cards */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.process-card {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Pulse animation for running process */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.running-process {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 1024px) {
+  .grid-cols-12 {
+    grid-template-columns: 1fr;
+  }
+
+  .col-span-3,
+  .col-span-6,
+  .col-span-12 {
+    grid-column: span 1;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .flex-wrap {
+    flex-direction: column;
+  }
+
+  .space-x-1 > * + * {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-blue-50 {
+    background-color: #e0f2fe;
+  }
+
+  .bg-green-50 {
+    background-color: #e8f5e8;
+  }
+
+  .bg-yellow-50 {
+    background-color: #fffbeb;
+  }
+
+  .text-gray-500 {
+    color: #374151;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Process queue animations */
+.process-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.process-exit {
+  animation: slideOutLeft 0.3s ease-in;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
