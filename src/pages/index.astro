@@ -2,7 +2,7 @@
 import '../styles/globals.css';
 // Component Imports
 //import Button from '../components/Button.astro';
-import Home from '../app/page';
+import { OperatingSystemsVirtualLab } from '../components/operating-systems-virtual-lab';
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
@@ -17,7 +17,9 @@ import Home from '../app/page';
 	</head>
 
 	<body>
-		
+		<div class="min-h-screen p-4 bg-gray-50">
+
+			<OperatingSystemsVirtualLab client:load/>
 		</div>
 	</body>
 </html>
