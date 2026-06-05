@@ -1,11 +1,11 @@
 ---
 import '../styles/global.css';
 // Component Imports
-import Button from '../components/Button.astro';
-
+// import Button from '../components/Button.astro';
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
----
+---import OSVirtualLab from '../app/page';
+
 
 <html lang="en">
 	<head>
@@ -17,9 +17,9 @@ import Button from '../components/Button.astro';
 	</head>
 
 	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+		<div class="min-h-screen p-4 bg-gray-50">
+
+			<OSVirtualLab client:load/>
 		</div>
 	</body>
 </html>
